@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.cresplanex'
+version = '1.0.0'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+	maven {
+		url "https://buf.build/gen/maven"
+	}
+}
+
+dependencies {
+    api "build.buf.gen:cresplanex_types_grpc_java:1.69.0.1.20241229081036.5cfa13fd79a9"
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+jar {
+    manifest {
+        attributes(
+            'Implementation-Title': 'Cresplanex Common Proto Library',
+            'Implementation-Version': version
+        )
+    }
+}
